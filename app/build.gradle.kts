@@ -1,7 +1,9 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp") // replacement for kapt
+    alias(libs.plugins.compose.compiler) // compose plugin
 }
 
 android {
@@ -36,6 +38,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.toString()
     }
 }
 
@@ -47,6 +53,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.ui.android)
+    implementation(libs.androidx.foundation.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,8 +67,21 @@ dependencies {
     implementation(libs.androidx.security.crypto)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.ui.tooling.preview)
+//    implementation(libs.androidx.compose.ui)
+//    implementation(libs.androidx.compose.material)
+//    implementation(libs.androidx.compose.ui.tooling.preview)
+
+    implementation(libs.compose.material3)
+//    implementation(libs.compose.foundation)
+//    implementation(libs.compose.runtime)
+
+    implementation(libs.activity.compose)
+    implementation(libs.lifecycle.runtime.ktx)
+
+    implementation(platform(libs.androidx.compose.bom))
+
+    // Optional for previews
+//    debugImplementation(libs.compose.ui.tooling)
+//    debugImplementation(libs.compose.ui.test.manifest)
 
 }

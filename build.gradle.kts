@@ -7,9 +7,14 @@
     It also has a better understanding of Kotlin language constructs.
     Read more at: https://developer.android.com/build/migrate-to-ksp#kts
 */
+/*
+    In each module that uses Compose, apply the compose plugin.
+*/
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
 
     id("com.google.devtools.ksp") version "2.2.10-2.0.2" apply false
+
+    alias(libs.plugins.compose.compiler) apply false
 }
