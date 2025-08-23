@@ -11,6 +11,11 @@ import android.view.Menu
 import android.view.MenuItem
 import work.erlend.securenotesdemo.databinding.ActivityMainBinding
 
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+
+// Commented main activity that uses nav controller.
+/*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -55,5 +60,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+}
+*/
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            SecureNotesDemoApp()
+        }
     }
 }
