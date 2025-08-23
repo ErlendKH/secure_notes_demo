@@ -1,0 +1,42 @@
+package work.erlend.securenotesdemo.navigation
+
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.*
+import work.erlend.securenotesdemo.ui.screens.AgileInfoScreen
+import work.erlend.securenotesdemo.ui.screens.NotesScreen
+
+@Composable
+fun MainScreen() {
+    val navController = rememberNavController()
+
+    Scaffold(
+        bottomBar = {
+            NavigationBar {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+
+                listOf(Screen.Notes, Screen.Agile).forEach { screen ->
+                    NavigationBarItem(
+                        selected = currentRoute == screen.route,
+                        onClick = { navController.navigate(screen.route) { launchSingleTop = true } },
+                        icon = { Icon(screen.icon, contentDescription = screen.title) },
+                        label = { Text(screen.title) }
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+        NavHost(
+            navController,
+            startDestination = Screen.Notes.route,
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable(Screen.Notes.route) { NotesScreen() }
+            composable(Screen.Agile.route) { AgileInfoScreen() }
+        }
+    }
+}

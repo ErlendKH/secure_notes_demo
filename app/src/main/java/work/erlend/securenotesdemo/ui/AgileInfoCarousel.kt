@@ -24,6 +24,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -66,6 +67,10 @@ fun AgileInfoCarousel() {
             Text(
                 text = pages[page],
                 style = MaterialTheme.typography.bodyLarge.copy(fontSize = 20.sp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+//                textAlign = TextAlign.Center,
             )
         }
 
