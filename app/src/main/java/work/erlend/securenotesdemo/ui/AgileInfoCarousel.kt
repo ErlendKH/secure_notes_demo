@@ -1,5 +1,6 @@
 package work.erlend.securenotesdemo.ui
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
@@ -17,14 +18,18 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -52,6 +57,7 @@ fun AgileInfoCarousel() {
     )
 
     val pagerState = rememberPagerState(pageCount = { pages.size })
+    val scope = rememberCoroutineScope() // for clickable dots
 
     Column(
         modifier = Modifier
@@ -70,25 +76,32 @@ fun AgileInfoCarousel() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-//                textAlign = TextAlign.Center,
+                // textAlign = TextAlign.Start by default (left-aligned)
             )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Dot indicators
+        // Animated & clickable dot indicators
         Row(horizontalArrangement = Arrangement.Center) {
             repeat(pagerState.pageCount) { index ->
                 val isSelected = pagerState.currentPage == index
+                val size by animateDpAsState(targetValue = if (isSelected) 12.dp else 8.dp)
+
                 Box(
                     modifier = Modifier
                         .padding(4.dp)
-                        .size(if (isSelected) 12.dp else 8.dp)
+                        .size(size)
                         .clip(CircleShape)
                         .background(
                             if (isSelected) MaterialTheme.colorScheme.primary
                             else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
                         )
+                        .clickable {
+                            scope.launch {
+                                pagerState.animateScrollToPage(index)
+                            }
+                        }
                 )
             }
         }
