@@ -67,21 +67,12 @@ dependencies {
     implementation(libs.androidx.security.crypto)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-//    implementation(libs.androidx.compose.ui)
-//    implementation(libs.androidx.compose.material)
-//    implementation(libs.androidx.compose.ui.tooling.preview)
 
     implementation(libs.compose.material3)
-//    implementation(libs.compose.foundation)
-//    implementation(libs.compose.runtime)
 
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.runtime.ktx)
 
     implementation(platform(libs.androidx.compose.bom))
-
-    // Optional for previews
-//    debugImplementation(libs.compose.ui.tooling)
-//    debugImplementation(libs.compose.ui.test.manifest)
 
 }

@@ -9,6 +9,8 @@
 */
 /*
     In each module that uses Compose, apply the compose plugin.
+    Important to add the compiler. Read more here:
+    https://developer.android.com/develop/ui/compose/compiler
 */
 plugins {
     alias(libs.plugins.android.application) apply false
