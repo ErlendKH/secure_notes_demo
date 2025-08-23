@@ -74,5 +74,6 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
 
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.navigation.compose)
 
 }
