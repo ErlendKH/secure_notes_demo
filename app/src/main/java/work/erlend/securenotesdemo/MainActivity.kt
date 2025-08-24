@@ -1,5 +1,8 @@
 package work.erlend.securenotesdemo
 
+// Commented main activity that uses xml defined views.
+/*
+
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +14,6 @@ import android.view.Menu
 import android.view.MenuItem
 import work.erlend.securenotesdemo.databinding.ActivityMainBinding
 
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-
-// Commented main activity that uses nav controller.
-/*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -63,6 +61,10 @@ class MainActivity : AppCompatActivity() {
     }
 }
 */
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
