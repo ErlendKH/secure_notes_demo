@@ -114,20 +114,19 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import work.erlend.securenotesdemo.data.local.NoteDao
 import work.erlend.securenotesdemo.data.local.NoteEntity
+import work.erlend.securenotesdemo.navigation.Screen
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotesScreen(noteDao: NoteDao) {
+fun NotesScreen(noteDao: NoteDao, navController: NavController) {
     val scope = rememberCoroutineScope()
     var notes by remember { mutableStateOf(listOf<NoteEntity>()) }
     var searchQuery by remember { mutableStateOf("") }
@@ -148,6 +147,15 @@ fun NotesScreen(noteDao: NoteDao) {
         .sortedByDescending { if (sortDescending) it.id else -it.id }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+
+        Button(
+            onClick = { navController.navigate(Screen.Upgrade.route) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Open Upgrade Screen (Demo)")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Search field with button
         OutlinedTextField(

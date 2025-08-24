@@ -9,6 +9,7 @@ import androidx.navigation.compose.*
 import work.erlend.securenotesdemo.data.local.NotesDatabase
 import work.erlend.securenotesdemo.ui.screens.AgileInfoScreen
 import work.erlend.securenotesdemo.ui.notes.NotesScreen
+import work.erlend.securenotesdemo.ui.upgrade.UpgradeScreen
 
 @Composable
 fun MainScreen(database: NotesDatabase) {
@@ -36,7 +37,17 @@ fun MainScreen(database: NotesDatabase) {
             startDestination = Screen.Notes.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Notes.route) { NotesScreen(noteDao = database.noteDao()) }
+            composable(Screen.Notes.route) {
+                NotesScreen(noteDao = database.noteDao(), navController = navController) }
+            composable(Screen.Upgrade.route) {
+                UpgradeScreen(
+                    navController = navController,
+                    database = database,
+                    onPassphraseUpdated = { newPass ->
+                        // optional callback after rekeying
+                    }
+                )
+            }
             composable(Screen.Agile.route) { AgileInfoScreen() }
         }
     }

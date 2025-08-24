@@ -17,4 +17,9 @@ class PassphraseManager(private val context: Context) {
         prefs.edit { putString("sqlcipher_passphrase", newPass) }
         return newPass
     }
+
+    fun updatePassphrase(newPass: String) {
+        prefs.edit { putString("sqlcipher_passphrase", newPass) }
+    }
+
 }
