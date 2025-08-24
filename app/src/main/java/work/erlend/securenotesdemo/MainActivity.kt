@@ -80,6 +80,8 @@ class MainActivity : ComponentActivity() {
 }
 */
 
+//
+/*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -101,4 +103,28 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+*/
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import work.erlend.securenotesdemo.data.KeystorePassphraseManager
+import work.erlend.securenotesdemo.data.local.NotesDatabase
+
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Fetch or create passphrase securely
+        val passphrase = KeystorePassphraseManager.getOrCreatePassphrase(this)
+
+        // Initialize the database with the secure passphrase
+        val db = NotesDatabase.getDatabase(this, passphrase)
+
+        setContent {
+            SecureNotesDemoApp(db)
+        }
+
+    }
+}

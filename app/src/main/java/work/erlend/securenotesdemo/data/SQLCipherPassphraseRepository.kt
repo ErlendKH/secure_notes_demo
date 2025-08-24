@@ -6,7 +6,6 @@ import java.security.SecureRandom
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
-import work.erlend.securenotesdemo.data.KeystoreHelper
 
 class SQLCipherPassphraseRepository(private val context: Context) {
     companion object {
@@ -25,7 +24,7 @@ class SQLCipherPassphraseRepository(private val context: Context) {
     fun getOrCreatePassphrase(): String {
         val encB64 = prefs.getString(PREF_ENC, null)
         val ivB64  = prefs.getString(PREF_IV, null)
-        val key = KeystoreHelper.getOrCreateAesKey(KEY_ALIAS)
+        val key = KeystorePassphraseManager.getOrCreateAesKey(KEY_ALIAS)
 
         return if (encB64 != null && ivB64 != null) {
             val enc = Base64.decode(encB64, Base64.NO_WRAP)

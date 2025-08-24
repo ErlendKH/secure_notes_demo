@@ -43,9 +43,6 @@ fun MainScreen(database: NotesDatabase) {
                 UpgradeScreen(
                     navController = navController,
                     database = database,
-                    onPassphraseUpdated = { newPass ->
-                        // optional callback after rekeying
-                    }
                 )
             }
             composable(Screen.Agile.route) { AgileInfoScreen() }
