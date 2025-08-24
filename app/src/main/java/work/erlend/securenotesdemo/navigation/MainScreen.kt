@@ -36,7 +36,7 @@ fun MainScreen(database: NotesDatabase) {
             startDestination = Screen.Notes.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Notes.route) { NotesScreen(database) }
+            composable(Screen.Notes.route) { NotesScreen(noteDao = database.noteDao()) }
             composable(Screen.Agile.route) { AgileInfoScreen() }
         }
     }

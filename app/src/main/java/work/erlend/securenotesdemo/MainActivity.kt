@@ -62,6 +62,8 @@ class MainActivity : AppCompatActivity() {
 }
 */
 
+// Uses CryptoManager solution.
+/*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -76,3 +78,27 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+*/
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import work.erlend.securenotesdemo.data.PassphraseManager
+import work.erlend.securenotesdemo.data.local.NotesDatabase
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Get or generate passphrase
+        val passphrase = PassphraseManager(this).getPassphrase()
+
+        // Initialize the database with SQLCipher passphrase
+        val db = NotesDatabase.getDatabase(this, passphrase)
+
+        setContent {
+            SecureNotesDemoApp(db)
+        }
+    }
+}
+
