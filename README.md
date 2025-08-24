@@ -42,7 +42,7 @@ app/src/main/java/com/example/securenotesdemo/
 
 ## Files Deep-Dives
 
-## MainActivity.kt
+### MainActivity.kt
 ```kotlin
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
 - `setContent` { ... }: Entry point for Compose UI.
 - Instead of inflating an XML layout, it launches the SecureNotesDemoApp composable.
 
-## SecureNotesDemoApp.kt
+### SecureNotesDemoApp.kt
 ```kotlin
 @Composable
 fun SecureNotesDemoApp() {
@@ -71,7 +71,7 @@ fun SecureNotesDemoApp() {
 - `MaterialTheme`: Applies Material Design theming (colors, typography, shapes) to child composables.
 - `MainScreen()`: The root of our navigation system.
 
-## MainScreen.kt
+### MainScreen.kt
 
 This file sets up navigation and the bottom navigation bar.
 - `rememberNavController()`: Creates and remembers a navigation controller that manages app navigation.
@@ -79,7 +79,7 @@ This file sets up navigation and the bottom navigation bar.
 - `NavigationBar`: Our bottom navigation bar.
 - `NavHost()`: Defines destinations and connects them to composable screens.
 
-## Screen.kt
+### Screen.kt
 
 ```kotlin
 sealed class Screen(val route: String, val title: String, val icon: ImageVector) {
@@ -92,7 +92,7 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
 - Ensures type safety when using when or navigation routes.
 - Each object (Carousel, Notes) represents a screen with a route, title, and icon.
 
-## AgileInfoCarousel.kt
+### AgileInfoCarousel.kt
 
 This file shows a pager/carousel of Agile information.
 - `listOf()`: Creates a list of pages (each page is AnnotatedString text with formatting).
