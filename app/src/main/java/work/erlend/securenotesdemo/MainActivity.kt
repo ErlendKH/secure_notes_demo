@@ -65,12 +65,14 @@ class MainActivity : AppCompatActivity() {
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import work.erlend.securenotesdemo.data.local.NotesDatabase
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val db = NotesDatabase.getDatabase(this)
         setContent {
-            SecureNotesDemoApp()
+            SecureNotesDemoApp(database = db)
         }
     }
 }

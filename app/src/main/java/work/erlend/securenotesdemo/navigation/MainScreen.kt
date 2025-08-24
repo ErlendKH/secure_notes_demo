@@ -6,11 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
+import work.erlend.securenotesdemo.data.local.NotesDatabase
 import work.erlend.securenotesdemo.ui.screens.AgileInfoScreen
-import work.erlend.securenotesdemo.ui.screens.NotesScreen
+import work.erlend.securenotesdemo.ui.notes.NotesScreen
 
 @Composable
-fun MainScreen() {
+fun MainScreen(database: NotesDatabase) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -35,7 +36,7 @@ fun MainScreen() {
             startDestination = Screen.Notes.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Notes.route) { NotesScreen() }
+            composable(Screen.Notes.route) { NotesScreen(database) }
             composable(Screen.Agile.route) { AgileInfoScreen() }
         }
     }
