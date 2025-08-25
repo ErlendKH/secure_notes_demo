@@ -19,13 +19,45 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import work.erlend.securenotesdemo.common.ui.CarouselPage
 import work.erlend.securenotesdemo.common.ui.InfoCarousel
-import work.erlend.securenotesdemo.theory.agile.AgileInfoCarousel
+
+val testingPages = listOf(
+    CarouselPage(
+        title = "Unit Testing Android Components",
+        content = buildAnnotatedString {
+            append("Unit tests verify individual Android components like ViewModels and utility classes. ")
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Unit tests") }
+            append(" run fast and help catch logic errors early. Use ")
+            withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("JUnit") }
+            append(" and Kotlin test frameworks.")
+        }
+    ),
+    CarouselPage(
+        title = "Instrumented Tests on Device/Emulator",
+        content = buildAnnotatedString {
+            append("Instrumented tests run on a real Android device or emulator. ")
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Instrumented tests") }
+            append(" verify UI interactions, databases, and navigation. Use ")
+            withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("Espresso") }
+            append(" and AndroidX Test for UI testing.")
+        }
+    ),
+    CarouselPage(
+        title = "Best Practices for Android Testing",
+        content = buildAnnotatedString {
+            append("Best practices:\n\n")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep tests small and independent\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Use test doubles (mocks/stubs) for dependencies\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Automate tests with CI/CD pipelines\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Measure code coverage (e.g., with JaCoCo)") }
+        }
+    )
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TestingInfoScreen(navController: NavController) {
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -45,36 +77,7 @@ fun TestingInfoScreen(navController: NavController) {
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
-            val pages = listOf(
-                buildAnnotatedString {
-                    append("Unit tests verify individual components of your app in isolation. ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Unit tests") }
-                    append(" run fast and help catch logic errors early. ")
-                    withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("JUnit") }
-                    append(" and Kotlin test frameworks are commonly used.")
-                },
-                buildAnnotatedString {
-                    append("Instrumented tests run on a real device or emulator. ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Instrumented tests") }
-                    append(" test interactions with Android components like Activities or Databases. ")
-                    withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("Espresso") }
-                    append(" and AndroidX Test are used for UI testing.")
-                },
-                buildAnnotatedString {
-                    append("Best Practices:\n")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep tests small and independent\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Use test doubles (mocks/stubs)\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Run tests automatically with CI/CD\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Measure code coverage to track completeness") }
-                }
-            )
-            InfoCarousel(pages = pages)
-
-//            Text("Testing in Android")
-//            Spacer(modifier = Modifier.height(16.dp))
-//            Text("This will later contain a carousel with testing info.")
-
+            InfoCarousel(pages = testingPages)
         }
     }
 

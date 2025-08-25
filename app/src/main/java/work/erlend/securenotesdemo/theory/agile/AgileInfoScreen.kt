@@ -21,12 +21,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import work.erlend.securenotesdemo.common.ui.CarouselPage
 import work.erlend.securenotesdemo.common.ui.InfoCarousel
+
+val agilePages = listOf(
+    CarouselPage(
+        title = "Iterative Android Development",
+        content = buildAnnotatedString {
+            append("Agile Android development is an ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("iterative") }
+            append(" approach emphasizing ")
+            withStyle(SpanStyle(fontStyle = FontStyle.Italic)) { append("continuous feedback") }
+            append(" and collaboration between developers, testers, and product owners.")
+        }
+    ),
+    CarouselPage(
+        title = "Sprints & Feature Delivery",
+        content = buildAnnotatedString {
+            append("Teams work in ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("sprints") }
+            append(", short cycles where Android features are planned, implemented, and reviewed.")
+        }
+    ),
+    CarouselPage(
+        title = "Core Agile Values",
+        content = buildAnnotatedString {
+            append("Agile values in Android projects:\n\n")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Team collaboration\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Functional Android builds\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Customer feedback\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Responding to change") }
+        }
+    )
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AgileInfoScreen(navController: NavController) {
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -46,34 +77,7 @@ fun AgileInfoScreen(navController: NavController) {
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
-//            AgileInfoCarousel()
-
-            val pages = listOf(
-                buildAnnotatedString {
-                    append("Agile software development is an ")
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("iterative") }
-                    append(" approach that emphasizes ")
-                    withStyle(SpanStyle(fontStyle = FontStyle.Italic)) { append("continuous feedback") }
-                    append(" and collaboration.")
-                },
-                buildAnnotatedString {
-                    append("Teams work in ")
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("sprints") }
-                    append(", short cycles where software is planned, built, and reviewed.")
-                },
-                buildAnnotatedString {
-                    append("Agile values:\n")
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Individuals and interactions\n") }
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Working software\n") }
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Customer collaboration\n") }
-                    withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Responding to change") }
-                }
-            )
-            InfoCarousel(pages = pages)
-
+            InfoCarousel(pages = agilePages)
         }
     }
-
-//    AgileInfoCarousel()
 }

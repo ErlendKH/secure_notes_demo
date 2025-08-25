@@ -19,8 +19,39 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import work.erlend.securenotesdemo.common.ui.CarouselPage
 import work.erlend.securenotesdemo.common.ui.InfoCarousel
-import work.erlend.securenotesdemo.theory.agile.AgileInfoCarousel
+
+val securityPages = listOf(
+    CarouselPage(
+        title = "Secure Data Storage",
+        content = buildAnnotatedString {
+            append("Store sensitive Android app data securely. ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("SQLCipher") }
+            append(" encrypts your app database and protects notes if the APK is decompiled.")
+        }
+    ),
+    CarouselPage(
+        title = "APK Decompilation Risks",
+        content = buildAnnotatedString {
+            append("APK files can be decompiled, exposing source code and resources. ")
+            append("Obfuscate code using ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("ProGuard") }
+            append(" or ")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("R8") }
+            append(", and avoid hardcoding secrets in the app.")
+        }
+    ),
+    CarouselPage(
+        title = "App Hardening",
+        content = buildAnnotatedString {
+            append("Additional security tips for Android apps:\n\n")
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Minimize permissions\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Protect API keys and secrets\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep dependencies updated (note: SQLCipher is outdated in this demo)\n") }
+        }
+    )
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,36 +76,7 @@ fun SecurityInfoScreen(navController: NavController) {
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
-            val pages = listOf(
-                buildAnnotatedString {
-                    append("Use encrypted storage for sensitive data. ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("SQLCipher") }
-                    append(" can encrypt databases, and ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("EncryptedSharedPreferences") }
-                    append(" works for key-value storage. Never store passwords in plain text.")
-                },
-                buildAnnotatedString {
-                    append("Always use ")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("HTTPS") }
-                    append(" with TLS for network communication. ")
-                    append("Validate SSL certificates properly, and consider ")
-                    withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("certificate pinning") }
-                    append(" for extra security.")
-                },
-                buildAnnotatedString {
-                    append("App Hardening & Permissions:\n")
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Minimize permissions\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Obfuscate code using ProGuard or R8\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Protect API keys and secrets\n") }
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep libraries updated to avoid vulnerabilities") }
-                }
-            )
-            InfoCarousel(pages = pages)
-
-//            Text("Android Security")
-//            Spacer(modifier = Modifier.height(16.dp))
-//            Text("This will later contain a carousel with security info.")
+            InfoCarousel(pages = securityPages)
         }
     }
 
