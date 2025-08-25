@@ -45,16 +45,4 @@ fun SecurityInfoScreen(navController: NavController) {
         }
     }
 
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .padding(16.dp),
-//        verticalArrangement = Arrangement.Center,
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Text("Android Security")
-//        Spacer(modifier = Modifier.height(16.dp))
-//        Text("This will later contain a carousel with security info.")
-//    }
-
 }

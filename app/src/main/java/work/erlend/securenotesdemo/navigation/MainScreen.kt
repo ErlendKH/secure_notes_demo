@@ -27,21 +27,14 @@ fun MainScreen(database: NotesDatabase) {
                 val currentRoute = navBackStackEntry?.destination?.route
 
                 listOf(Screen.Notes, Screen.Theory).forEach { screen ->
-//                    val selected = currentRoute?.startsWith(screen.route) == true
                     val selected = isParentTabSelected(screen.route, currentRoute)
 
                     NavigationBarItem(
-//                        selected = currentRoute == screen.route,
                         selected = selected,
                         onClick = { navController.navigate(screen.route) { launchSingleTop = true } },
                         icon = { Icon(screen.icon, contentDescription = screen.title) },
                         label = { Text(screen.title) },
                         modifier = Modifier.background(if (selected) Color.LightGray else Color.Transparent),
-//                        modifier = Modifier
-//                            .background(
-//                                if (currentRoute == screen.route) Color.LightGray // highlight only this one
-//                                else Color.Transparent
-//                            )
                     )
                 }
             }
