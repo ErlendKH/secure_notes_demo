@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.ui.notes
+package work.erlend.securenotesdemo.notes
 
 // Uses CryptoManager solution.
 /*
@@ -308,8 +308,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
-import work.erlend.securenotesdemo.data.local.NoteDao
-import work.erlend.securenotesdemo.data.local.NoteEntity
+import work.erlend.securenotesdemo.common.data.local.NoteDao
+import work.erlend.securenotesdemo.common.data.local.NoteEntity
 import work.erlend.securenotesdemo.navigation.Screen
 
 private const val MAX_NOTE_LENGTH = 300
@@ -383,7 +383,9 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
             items(filteredNotes) { note ->
                 NoteItem(
                     note = note.copy(
-                        content = if (note.content.length > MAX_NOTE_LENGTH) note.content.take(MAX_NOTE_LENGTH) + "…" else note.content
+                        content = if (note.content.length > MAX_NOTE_LENGTH) note.content.take(
+                            MAX_NOTE_LENGTH
+                        ) + "…" else note.content
                     ),
                     onEdit = {
                         editingNote = it

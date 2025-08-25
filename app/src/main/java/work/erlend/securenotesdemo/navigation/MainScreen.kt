@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
-import work.erlend.securenotesdemo.data.local.NotesDatabase
-import work.erlend.securenotesdemo.ui.screens.AgileInfoScreen
-import work.erlend.securenotesdemo.ui.notes.NotesScreen
-import work.erlend.securenotesdemo.ui.upgrade.UpgradeScreen
+import work.erlend.securenotesdemo.common.data.local.NotesDatabase
+import work.erlend.securenotesdemo.agile.AgileInfoScreen
+import work.erlend.securenotesdemo.notes.NotesScreen
+import work.erlend.securenotesdemo.upgrade.UpgradeScreen
 
 @Composable
 fun MainScreen(database: NotesDatabase) {

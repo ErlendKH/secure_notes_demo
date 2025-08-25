@@ -1,7 +1,6 @@
-package work.erlend.securenotesdemo.ui.screens
+package work.erlend.securenotesdemo.agile
 
 import androidx.compose.runtime.Composable
-import work.erlend.securenotesdemo.ui.AgileInfoCarousel
 
 @Composable
 fun AgileInfoScreen() {

@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.data.local
+package work.erlend.securenotesdemo.common.data.local
 
 // Uses CryptoManager solution.
 /*

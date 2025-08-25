@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.ui
+package work.erlend.securenotesdemo.agile
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi

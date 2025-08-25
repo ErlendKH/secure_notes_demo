@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.ui.upgrade
+package work.erlend.securenotesdemo.upgrade
 
 /*
 import android.widget.Toast
@@ -78,8 +78,8 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import work.erlend.securenotesdemo.data.KeystorePassphraseManager
-import work.erlend.securenotesdemo.data.local.NotesDatabase
+import work.erlend.securenotesdemo.common.data.security.KeystorePassphraseManager
+import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

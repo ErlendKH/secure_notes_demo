@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.data.local
+package work.erlend.securenotesdemo.common.data.local
 
 // Uses CryptoManager solution.
 /*
@@ -114,11 +114,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import work.erlend.securenotesdemo.data.local.NoteEntity
-import work.erlend.securenotesdemo.data.local.NoteDao
 import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SupportFactory
-import work.erlend.securenotesdemo.data.KeystorePassphraseManager
 
 @Database(entities = [NoteEntity::class], version = 1)
 abstract class NotesDatabase : RoomDatabase() {

@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.ui.notes
+package work.erlend.securenotesdemo.notes
 
 // First version with SQLCipher.
 /*
@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import work.erlend.securenotesdemo.data.local.NoteEntity
+import work.erlend.securenotesdemo.common.data.local.NoteEntity
 
 @Composable
 fun NoteItem(

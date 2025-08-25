@@ -1,102 +1,11 @@
-package work.erlend.securenotesdemo.data
-
-/*
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
-import android.util.Base64
-import java.security.KeyStore
-import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
-import javax.crypto.SecretKey
-import javax.crypto.spec.GCMParameterSpec
-
-object KeystorePassphraseManager {
-
-    private const val ANDROID_KEYSTORE = "AndroidKeyStore"
-    private const val KEY_ALIAS = "SecureNotesDBKey"
-    private const val AES_TRANSFORMATION = "AES/GCM/NoPadding"
-
-    private var cachedPassphrase: String? = null
-
-    fun getOrCreatePassphrase(): String {
-        cachedPassphrase?.let { return it }
-
-        val key = getOrCreateAesKey(KEY_ALIAS)
-
-        // For demo: store passphrase encrypted in a file or in-memory (for simplicity, keep in-memory)
-        // In production, you might use EncryptedFile or SharedPreferences with encryption key from Keystore
-        val existing = storedEncryptedPassphrase()
-        if (existing != null) {
-            cachedPassphrase = decrypt(existing, key)
-            return cachedPassphrase!!
-        }
-
-        // Generate new passphrase
-        val newPass = java.util.UUID.randomUUID().toString()
-        val encrypted = encrypt(newPass, key)
-        storeEncryptedPassphrase(encrypted)
-        cachedPassphrase = newPass
-        return newPass
-    }
-
-    fun getOrCreateAesKey(alias: String): SecretKey {
-        val ks = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
-        (ks.getEntry(alias, null) as? KeyStore.SecretKeyEntry)?.let { return it.secretKey }
-
-        val keyGen = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEYSTORE)
-        val spec = KeyGenParameterSpec.Builder(
-            alias,
-            KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-        )
-            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-            .build()
-
-        keyGen.init(spec)
-        return keyGen.generateKey()
-    }
-
-    private fun encrypt(passphrase: String, key: SecretKey): String {
-        val cipher = Cipher.getInstance(AES_TRANSFORMATION)
-        cipher.init(Cipher.ENCRYPT_MODE, key)
-        val iv = cipher.iv
-        val encryptedBytes = cipher.doFinal(passphrase.toByteArray(Charsets.UTF_8))
-        return Base64.encodeToString(iv + encryptedBytes, Base64.DEFAULT)
-    }
-
-    private fun decrypt(encryptedBase64: String, key: SecretKey): String {
-        val bytes = Base64.decode(encryptedBase64, Base64.DEFAULT)
-        val iv = bytes.copyOfRange(0, 12)
-        val cipherText = bytes.copyOfRange(12, bytes.size)
-        val cipher = Cipher.getInstance(AES_TRANSFORMATION)
-        cipher.init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(128, iv))
-        return String(cipher.doFinal(cipherText), Charsets.UTF_8)
-    }
-
-    // Placeholder for storage — for demo, could be in-memory
-    private var storedEncryptedPassphrase: String? = null
-    private fun storedEncryptedPassphrase(): String? = storedEncryptedPassphrase
-    private fun storeEncryptedPassphrase(encrypted: String) {
-        storedEncryptedPassphrase = encrypted
-    }
-
-    fun updatePassphrase(newPassphrase: String) {
-        val key = getOrCreateAesKey(KEY_ALIAS)
-        val encrypted = encrypt(newPassphrase, key)
-        storeEncryptedPassphrase(encrypted)
-        cachedPassphrase = newPassphrase
-    }
-
-}
-*/
-
+package work.erlend.securenotesdemo.common.data.security
 
 import android.content.Context
 import android.security.keystore.KeyProperties
 import android.util.Base64
 import android.util.Log
 import androidx.core.content.edit
-import work.erlend.securenotesdemo.data.local.NotesDatabase
+import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 import java.security.KeyStore
 import java.util.UUID
 import javax.crypto.Cipher

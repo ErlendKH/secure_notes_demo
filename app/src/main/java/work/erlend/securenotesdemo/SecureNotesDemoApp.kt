@@ -40,7 +40,7 @@ fun SecureNotesDemoApp(context: Context) {
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import work.erlend.securenotesdemo.data.local.NotesDatabase
+import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 import work.erlend.securenotesdemo.navigation.MainScreen
 
 @Composable
