@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import work.erlend.securenotesdemo.common.ui.CarouselPage
 import work.erlend.securenotesdemo.common.ui.InfoCarousel
+import work.erlend.securenotesdemo.navigation.Screen
 
 val testingPages = listOf(
     CarouselPage(
@@ -77,7 +78,11 @@ fun TestingInfoScreen(navController: NavController) {
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            InfoCarousel(pages = testingPages)
+            InfoCarousel(
+                pages = testingPages,
+                onReturn = { navController.navigate(Screen.Theory.route)},
+                navigateNext = { navController.navigate(Screen.Agile.route) }
+            )
         }
     }
 

@@ -28,17 +28,18 @@ fun TheoryScreen(navController: NavController) {
         }
 
         Button(
+            onClick = { navController.navigate("theory/security") },
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
+        ) {
+            Text("Security")
+        }
+
+        Button(
             onClick = { navController.navigate("theory/testing") },
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
         ) {
             Text("Testing")
         }
 
-        Button(
-            onClick = { navController.navigate("theory/security") },
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-        ) {
-            Text("Android Security")
-        }
     }
 }

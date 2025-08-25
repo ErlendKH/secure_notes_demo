@@ -26,7 +26,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun InfoCarousel(
     pages: List<CarouselPage>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onReturn: () -> Unit,          // always required
+    navigateNext: (() -> Unit)? = null, // optional
 ) {
     val pagerState = rememberPagerState(pageCount = { pages.size })
     val scope = rememberCoroutineScope()
@@ -74,6 +76,36 @@ fun InfoCarousel(
 //                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Buttons row
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 24.dp)
+                ) {
+
+//                    // Return button (always visible)
+//                    androidx.compose.material3.Button(onClick = onReturn) {
+//                        Text("Return")
+//                    }
+
+                    // Optional Next button (only on last page if provided)
+                    if (navigateNext != null && page == pages.lastIndex) {
+
+                        androidx.compose.material3.Button(onClick = onReturn) {
+                            Text("Return")
+                        }
+
+                        Spacer(modifier = Modifier.width(16.dp))
+
+                        // Warning: It may be appropriate to remove, if many theory pages are added.
+                        androidx.compose.material3.Button(onClick = navigateNext) {
+                            Text("Next")
+                        }
+                    }
+                }
+
             }
         }
 
