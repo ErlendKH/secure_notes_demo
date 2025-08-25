@@ -1,16 +1,5 @@
 package work.erlend.securenotesdemo.notes
 
-// First version with SQLCipher.
-/*
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-
-@Composable
-fun NoteItem(noteContent: String) {
-    Text("• $noteContent")
-}
-*/
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
