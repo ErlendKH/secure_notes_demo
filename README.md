@@ -46,6 +46,7 @@ The app follows a simple layered structure:
 - [x] Add navigation and screens
 - [x] Create Room database schema
 - [x] Integrate SQLCipher for encryption
+- [x] Improve app structure (feature-based)
 - [ ] Add unit tests
 - [ ] Add instrumented tests  
 - [ ] Setup GitHub Actions for automated build and test   
