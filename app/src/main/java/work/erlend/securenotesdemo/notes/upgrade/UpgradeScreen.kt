@@ -1,4 +1,4 @@
-package work.erlend.securenotesdemo.upgrade
+package work.erlend.securenotesdemo.notes.upgrade
 
 import android.util.Log
 import android.widget.Toast

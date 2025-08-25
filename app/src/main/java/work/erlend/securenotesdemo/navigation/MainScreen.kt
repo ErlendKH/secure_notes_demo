@@ -14,7 +14,7 @@ import work.erlend.securenotesdemo.notes.NotesScreen
 import work.erlend.securenotesdemo.theory.TheoryScreen
 import work.erlend.securenotesdemo.theory.security.SecurityInfoScreen
 import work.erlend.securenotesdemo.theory.testing.TestingInfoScreen
-import work.erlend.securenotesdemo.upgrade.UpgradeScreen
+import work.erlend.securenotesdemo.notes.upgrade.UpgradeScreen
 
 @Composable
 fun MainScreen(database: NotesDatabase) {
