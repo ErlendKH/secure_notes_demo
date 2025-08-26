@@ -42,15 +42,15 @@ The app follows a simple layered structure:
 
 ## Roadmap
 
-- [x] 1.1 Jetpack Compose migration 
-- [x] 1.2 Add navigation and screens
-- [x] 1.3 Create Room database schema
-- [x] 1.4 Integrate SQLCipher for encryption
-- [x] 1.5 Implement feature-based app structure
-- [x] 1.6 Add screens for testing and security
-- [ ] 1.7 Add unit tests
-- [ ] 1.8 Add instrumented tests  
-- [ ] 1.9 Setup GitHub Actions for automated build and test   
-- [ ] 1.10 Add KDocs  
-- [ ] 1.11 Integrate Dokka for API docs
-- [ ] 1.12 Add architectural diagrams
+- [x] Jetpack Compose migration 
+- [x] Add navigation and screens
+- [x] Create Room database schema
+- [x] Integrate SQLCipher for encryption
+- [x] Implement feature-based app structure
+- [x] Add screens for testing and security
+- [ ] Add unit tests
+- [ ] Add instrumented tests  
+- [ ] Setup GitHub Actions for automated build and test   
+- [ ] Add KDocs  
+- [ ] Integrate Dokka for API docs
+- [ ] Add architectural diagrams
