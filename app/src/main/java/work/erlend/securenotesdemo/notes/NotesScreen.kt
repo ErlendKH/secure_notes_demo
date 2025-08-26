@@ -15,14 +15,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
-import work.erlend.securenotesdemo.common.data.local.NoteDao
 import work.erlend.securenotesdemo.common.data.local.NoteEntity
+import work.erlend.securenotesdemo.common.data.local.NoteRepository
 import work.erlend.securenotesdemo.navigation.Screen
 
 private const val MAX_NOTE_LENGTH = 300
 
 @Composable
-fun NotesScreen(noteDao: NoteDao, navController: NavController) {
+fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     var notes by remember { mutableStateOf(listOf<NoteEntity>()) }
@@ -36,7 +36,7 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
     var showDeleteDialog by remember { mutableStateOf<NoteEntity?>(null) }
 
     LaunchedEffect(Unit) {
-        notes = noteDao.getAllNotes()
+        notes = noteRepository.getAllNotes()
     }
 
     val filteredNotes = notes
@@ -90,9 +90,8 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
             items(filteredNotes) { note ->
                 NoteItem(
                     note = note.copy(
-                        content = if (note.content.length > MAX_NOTE_LENGTH) note.content.take(
-                            MAX_NOTE_LENGTH
-                        ) + "…" else note.content
+                        content = if (note.content.length > MAX_NOTE_LENGTH)
+                            note.content.take(MAX_NOTE_LENGTH) + "…" else note.content
                     ),
                     onEdit = {
                         editingNote = it
@@ -122,7 +121,7 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
             },
             confirmButton = {
                 Button(onClick = {
-                    Log.d("NotesScreen", "Trying to add note with content: ${text}")
+                    Log.d("NotesScreen", "Trying to add note with content: $text")
 
                     if (text.isBlank()) return@Button
                     if (text.length > MAX_NOTE_LENGTH) {
@@ -132,9 +131,9 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
                     }
                     scope.launch {
                         try {
-                            noteDao.insert(NoteEntity(content = text))
-                            notes = noteDao.getAllNotes()
-                            Log.d("NotesScreen", "Successfully saved note: ${text}")
+                            noteRepository.addNote(NoteEntity(content = text))
+                            notes = noteRepository.getAllNotes()
+                            Log.d("NotesScreen", "Successfully saved note: $text")
                         } catch (e: Exception) {
                             Log.d("NotesScreen", "Error saving note: ${e.message}")
                             Toast.makeText(context, "Error saving note: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -173,8 +172,8 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
                     val noteToEdit = editingNote ?: return@Button
                     scope.launch {
                         try {
-                            noteDao.update(noteToEdit.id, text)
-                            notes = noteDao.getAllNotes()
+                            noteRepository.updateNote(noteToEdit.id, text)
+                            notes = noteRepository.getAllNotes()
                         } catch (e: Exception) {
                             Toast.makeText(context, "Error updating note: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
@@ -200,8 +199,8 @@ fun NotesScreen(noteDao: NoteDao, navController: NavController) {
                     val noteToDelete = showDeleteDialog ?: return@Button
                     scope.launch {
                         try {
-                            noteDao.delete(noteToDelete)
-                            notes = noteDao.getAllNotes()
+                            noteRepository.deleteNote(noteToDelete)
+                            notes = noteRepository.getAllNotes()
                         } catch (e: Exception) {
                             Toast.makeText(context, "Error deleting note: ${e.message}", Toast.LENGTH_SHORT).show()
                         }

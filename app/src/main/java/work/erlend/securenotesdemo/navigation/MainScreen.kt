@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.*
+import work.erlend.securenotesdemo.common.data.local.NoteRepository
 import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 import work.erlend.securenotesdemo.theory.agile.AgileInfoScreen
 import work.erlend.securenotesdemo.notes.NotesScreen
@@ -17,7 +18,7 @@ import work.erlend.securenotesdemo.theory.testing.TestingInfoScreen
 import work.erlend.securenotesdemo.notes.upgrade.UpgradeScreen
 
 @Composable
-fun MainScreen(database: NotesDatabase) {
+fun MainScreen(database: NotesDatabase, noteRepository: NoteRepository) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -46,7 +47,7 @@ fun MainScreen(database: NotesDatabase) {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Notes.route) {
-                NotesScreen(noteDao = database.noteDao(), navController = navController) }
+                NotesScreen(noteRepository = noteRepository, navController = navController) }
             composable(Screen.Upgrade.route) {
                 UpgradeScreen(
                     navController = navController,
