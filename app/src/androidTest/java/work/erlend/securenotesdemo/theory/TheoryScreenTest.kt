@@ -12,6 +12,7 @@ class TheoryScreenTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
+    // Tests navigation to Agile screen was successful
     @Test
     fun navigatesToAgileScreenDoesNotFindText() {
         // Click the "Theory" button
@@ -22,6 +23,7 @@ class TheoryScreenTest {
         composeTestRule.onNodeWithText("Agile").assertDoesNotExist()
     }
 
+    // Also tests that navigation to Agile screen was successful
     @Test
     fun navigatesToAgileScreenFindText() {
         // Click the "Theory" button
@@ -31,4 +33,18 @@ class TheoryScreenTest {
         // Assert that a node in the Agile screen is displayed
         composeTestRule.onNodeWithText("Agile Info").assertIsDisplayed()
     }
+
+    // Tests that navigation back to Theory screen was successful
+    @Test
+    fun navigatesToAgileScreenNavigateBack() {
+        // Click the "Theory" button
+        composeTestRule.onNodeWithText("Theory").performClick()
+        // Click the "Agile" button
+        composeTestRule.onNodeWithText("Agile").performClick()
+        // Click the "Back" button
+        composeTestRule.onNodeWithContentDescription("Back").performClick()
+        // Assert that a node in the Agile screen is displayed
+        composeTestRule.onNodeWithText("Agile").assertIsDisplayed()
+    }
+
 }
