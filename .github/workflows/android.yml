@@ -30,4 +30,5 @@ jobs:
           distribution: 'temurin'
 
       - name: Run unit tests
-        run: ./gradlew test
+        run: bash gradlew test
+#        run: ./gradlew test
