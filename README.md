@@ -50,7 +50,7 @@ The app follows a simple layered structure:
 - [x] Add screens for testing and security
 - [x] Add unit tests
 - [x] Add instrumented tests  
-- [ ] Setup GitHub Actions for automated build and test   
+- [x] Setup GitHub Actions for automated build and test   
 - [ ] Add KDocs  
 - [ ] Integrate Dokka for API docs
 - [ ] Add architectural diagrams
