@@ -1,1 +1,35 @@
 /build
+
+# Gradle
+.gradle/
+build/
+
+# Local configuration
+/local.properties
+
+# IDEA/Android Studio
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# Kotlin
+*.kotlin_module
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Android specific
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+
+# Jetpack Compose / generated code
+generated/
