@@ -31,27 +31,3 @@ jobs:
 
       - name: Run unit tests
         run: bash gradlew test
-
-      # It takes files generated during the workflow
-      # (here, your JUnit test results) and uploads them as artifacts to GitHub.
-      # A downloadable file you can see in the Actions run page.
-      # You can inspect the raw XML or HTML reports after the workflow completes.
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          # The display name of the artifact.
-          name: junit-results
-          # Path to the files you want to upload.
-          path: app/build/test-results
-
-      # Reads test result files (JUnit XML) and
-      # shows a test summary directly in the GitHub Actions UI.
-      - name: Publish test results
-        uses: dorny/test-reporter@v1
-        with:
-          # The label for this test report in the UI.
-          name: Unit Tests
-          # Location of JUnit XML test results.
-          path: app/build/test-results/testDebugUnitTest
-          # Format of the test results — here junit.
-          reporter: junit
