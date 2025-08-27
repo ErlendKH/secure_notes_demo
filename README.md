@@ -49,7 +49,7 @@ The app follows a simple layered structure:
 - [x] Implement feature-based app structure
 - [x] Add screens for testing and security
 - [x] Add unit tests
-- [ ] Add instrumented tests  
+- [x] Add instrumented tests  
 - [ ] Setup GitHub Actions for automated build and test   
 - [ ] Add KDocs  
 - [ ] Integrate Dokka for API docs
