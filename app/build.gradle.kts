@@ -55,6 +55,15 @@ android {
 //            )
         }
     }
+    // Enabling JUnit XML reports in Gradle (so GitHub can read them)
+    tasks.withType<Test> {
+        useJUnitPlatform() // optional if you want JUnit 5
+        reports {
+            junitXml.required.set(true)
+            html.required.set(true)
+        }
+    }
+
 }
 
 dependencies {
