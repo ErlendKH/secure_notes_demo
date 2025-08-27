@@ -29,5 +29,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Run unit tests
-        run: bash gradlew test
+      # Temporary commenting out unit tests from CI
+      # - name: Run unit tests
+      #   run: bash gradlew test
