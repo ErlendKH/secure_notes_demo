@@ -48,7 +48,7 @@ The app follows a simple layered structure:
 - [x] Integrate SQLCipher for encryption
 - [x] Implement feature-based app structure
 - [x] Add screens for testing and security
-- [ ] Add unit tests
+- [x] Add unit tests
 - [ ] Add instrumented tests  
 - [ ] Setup GitHub Actions for automated build and test   
 - [ ] Add KDocs  
