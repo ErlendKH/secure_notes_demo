@@ -37,7 +37,7 @@ jobs:
       # A downloadable file you can see in the Actions run page.
       # You can inspect the raw XML or HTML reports after the workflow completes.
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           # The display name of the artifact.
           name: junit-results
