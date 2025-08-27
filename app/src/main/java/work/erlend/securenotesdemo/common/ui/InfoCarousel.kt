@@ -17,7 +17,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,17 +35,14 @@ fun InfoCarousel(
     Column(
         modifier = modifier
             .fillMaxSize()
-//            .padding(24.dp)
     ) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.weight(1f)
         ) { page ->
             Column(
-//                modifier = Modifier.fillMaxSize()
                 modifier = Modifier
                     .fillMaxSize(),
-//                    .padding(24.dp),
                 verticalArrangement = Arrangement.Top, // top-align everything
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -56,7 +52,6 @@ fun InfoCarousel(
                     style = MaterialTheme.typography.titleLarge.copy(
                         fontWeight = FontWeight.Bold,
                         fontSize = 28.sp,
-//                        lineHeight = 28.sp,
                     ),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -73,7 +68,6 @@ fun InfoCarousel(
                     Text(
                         text = pages[page].content,
                         style = MaterialTheme.typography.bodyMedium.copy(fontSize = 18.sp),
-//                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
                     )
                 }
 
@@ -84,11 +78,6 @@ fun InfoCarousel(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 24.dp)
                 ) {
-
-//                    // Return button (always visible)
-//                    androidx.compose.material3.Button(onClick = onReturn) {
-//                        Text("Return")
-//                    }
 
                     // Optional Next button (only on last page if provided)
                     if (navigateNext != null && page == pages.lastIndex) {
