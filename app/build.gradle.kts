@@ -43,6 +43,18 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.toString()
     }
+    packaging {
+        resources {
+            excludes.add("META-INF/LICENSE-notice.md")
+            excludes.add("META-INF/LICENSE.md")
+//            pickFirsts += listOf(
+//                "META-INF/LICENSE.md",
+//                "META-INF/LICENSE.txt",
+//                "META-INF/NOTICE.md",
+//                "META-INF/NOTICE.txt"
+//            )
+        }
+    }
 }
 
 dependencies {
@@ -56,9 +68,6 @@ dependencies {
     implementation(libs.androidx.runtime.android)
     implementation(libs.androidx.ui.android)
     implementation(libs.androidx.foundation.android)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
     // Added dependencies for using Room, encryption, coroutines, and Compose.
     implementation(libs.androidx.room.runtime)
@@ -79,10 +88,16 @@ dependencies {
     implementation(libs.android.database.sqlcipher)
     implementation(libs.androidx.sqlite.framework)
 
-    testImplementation(libs.androidx.ui.test.junit4)
-    testImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.ui.test.junit4.android)
+
     testImplementation(libs.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.robolectric)
+
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
 }
