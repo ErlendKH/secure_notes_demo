@@ -32,10 +32,12 @@ fun MainScreen(database: NotesDatabase, noteRepository: NoteRepository) {
 
                     NavigationBarItem(
                         selected = selected,
-                        onClick = { navController.navigate(screen.route) { launchSingleTop = true } },
+                        onClick = { navController.navigate(screen.route) {
+                            launchSingleTop = true } },
                         icon = { Icon(screen.icon, contentDescription = screen.title) },
                         label = { Text(screen.title) },
-                        modifier = Modifier.background(if (selected) Color.LightGray else Color.Transparent),
+                        modifier = Modifier.background(if (selected)
+                            Color.LightGray else Color.Transparent),
                     )
                 }
             }

@@ -26,8 +26,8 @@ import work.erlend.securenotesdemo.navigation.Screen
 val testingPages = listOf(
     CarouselPage(
         title = "Unit Testing Android Components",
-        content = buildAnnotatedString {
-            append("Unit tests verify individual Android components like ViewModels and utility classes. ")
+        content = buildAnnotatedString { append(
+            "Unit tests verify individual Android components like ViewModels and utility classes.")
             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Unit tests") }
             append(" run fast and help catch logic errors early. Use ")
             withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("JUnit") }
@@ -38,9 +38,11 @@ val testingPages = listOf(
         title = "Instrumented Tests on Device/Emulator",
         content = buildAnnotatedString {
             append("Instrumented tests run on a real Android device or emulator. ")
-            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) { append("Instrumented tests") }
+            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("Instrumented tests") }
             append(" verify UI interactions, databases, and navigation. Use ")
-            withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) { append("Espresso") }
+            withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
+                append("Espresso") }
             append(" and AndroidX Test for UI testing.")
         }
     ),
@@ -48,10 +50,14 @@ val testingPages = listOf(
         title = "Best Practices for Android Testing",
         content = buildAnnotatedString {
             append("Best practices:\n\n")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep tests small and independent\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Use test doubles (mocks/stubs) for dependencies\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Automate tests with CI/CD pipelines\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Measure code coverage (e.g., with JaCoCo)") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Keep tests small and independent\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Use test doubles (mocks/stubs) for dependencies\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Automate tests with CI/CD pipelines\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Measure code coverage (e.g., with JaCoCo)") }
         }
     )
 )

@@ -59,7 +59,8 @@ fun UpgradeScreen(
                     try {
                         KeystorePassphraseManager.rekeyDatabase(context, database)
                         CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(context, "Database rekeyed!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Database rekeyed!",
+                                Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
                         Log.d("UpgradeScreen", "Failed to rekey database: ${e.message}")

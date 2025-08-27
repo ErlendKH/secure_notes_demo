@@ -58,7 +58,8 @@ object KeystorePassphraseManager {
     }
 
     /** Regular SharedPreferences */
-    private fun getPrefs(context: Context) = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private fun getPrefs(context: Context) =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     /** Creates or retrieves a SecretKey from the Android Keystore */
     fun getOrCreateAesKey(alias: String): SecretKey {

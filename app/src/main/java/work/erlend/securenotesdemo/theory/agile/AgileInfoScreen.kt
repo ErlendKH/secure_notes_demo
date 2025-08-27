@@ -48,10 +48,14 @@ val agilePages = listOf(
         title = "Core Agile Values",
         content = buildAnnotatedString {
             append("Agile values in Android projects:\n\n")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Team collaboration\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Functional Android builds\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Customer feedback\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Responding to change") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Team collaboration\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Functional Android builds\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Customer feedback\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Responding to change") }
         }
     )
 )

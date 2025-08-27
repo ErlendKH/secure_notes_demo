@@ -47,9 +47,12 @@ val securityPages = listOf(
         title = "App Hardening",
         content = buildAnnotatedString {
             append("Additional security tips for Android apps:\n\n")
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Minimize permissions\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Protect API keys and secrets\n\n") }
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) { append("• Keep dependencies updated (note: SQLCipher is outdated in this demo)\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Minimize permissions\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Protect API keys and secrets\n\n") }
+            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                append("• Keep dependencies updated (note: SQLCipher is outdated in this demo)\n") }
         }
     )
 )

@@ -71,7 +71,10 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
 
         // Add / Sort buttons
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Button(onClick = { showAddDialog = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
                 Spacer(modifier = Modifier.width(4.dp))
@@ -125,8 +128,14 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
 
                     if (text.isBlank()) return@Button
                     if (text.length > MAX_NOTE_LENGTH) {
-                        Toast.makeText(context, "Note cannot exceed $MAX_NOTE_LENGTH characters", Toast.LENGTH_SHORT).show()
-                        Log.d("NotesScreen", "Note cannot exceed $MAX_NOTE_LENGTH characters")
+                        Toast.makeText(
+                            context,
+                            "Note cannot exceed $MAX_NOTE_LENGTH characters",
+                            Toast.LENGTH_SHORT).show()
+                        Log.d(
+                            "NotesScreen",
+                            "Note cannot exceed $MAX_NOTE_LENGTH characters"
+                        )
                         return@Button
                     }
                     scope.launch {
@@ -136,7 +145,10 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
                             Log.d("NotesScreen", "Successfully saved note: $text")
                         } catch (e: Exception) {
                             Log.d("NotesScreen", "Error saving note: ${e.message}")
-                            Toast.makeText(context, "Error saving note: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Error saving note: ${e.message}",
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
                     showAddDialog = false
@@ -166,7 +178,10 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
                 Button(onClick = {
                     if (text.isBlank()) return@Button
                     if (text.length > MAX_NOTE_LENGTH) {
-                        Toast.makeText(context, "Note cannot exceed $MAX_NOTE_LENGTH characters", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Note cannot exceed $MAX_NOTE_LENGTH characters",
+                            Toast.LENGTH_SHORT).show()
                         return@Button
                     }
                     val noteToEdit = editingNote ?: return@Button
@@ -175,7 +190,10 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
                             noteRepository.updateNote(noteToEdit.id, text)
                             notes = noteRepository.getAllNotes()
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Error updating note: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Error updating note: ${e.message}",
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
                     showEditDialog = false
@@ -202,7 +220,10 @@ fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
                             noteRepository.deleteNote(noteToDelete)
                             notes = noteRepository.getAllNotes()
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Error deleting note: ${e.message}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "Error deleting note: ${e.message}",
+                                Toast.LENGTH_SHORT).show()
                         }
                     }
                     showDeleteDialog = null
