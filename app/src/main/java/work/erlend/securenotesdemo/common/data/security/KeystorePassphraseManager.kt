@@ -80,16 +80,18 @@ object KeystorePassphraseManager {
     }
 
     /** Encrypts a passphrase using the given SecretKey */
-    private fun encrypt(passphrase: String, key: SecretKey): String {
+    internal fun encrypt(passphrase: String, key: SecretKey): String {
         val cipher = Cipher.getInstance(AES_TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, key)
         val iv = cipher.iv
         val encryptedBytes = cipher.doFinal(passphrase.toByteArray(Charsets.UTF_8))
+        // Note: java.util.Base64 works for tests without needing RobolectricTestRunner,
+        // but it also requires API 26.
         return Base64.encodeToString(iv + encryptedBytes, Base64.DEFAULT)
     }
 
     /** Decrypts an encrypted passphrase using the given SecretKey */
-    private fun decrypt(encryptedBase64: String, key: SecretKey): String {
+    internal fun decrypt(encryptedBase64: String, key: SecretKey): String {
         val bytes = Base64.decode(encryptedBase64, Base64.DEFAULT)
         require(bytes.size > 12) { "Ciphertext too short" } // Basic sanity check
         val iv = bytes.copyOfRange(0, 12)
