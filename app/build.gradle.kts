@@ -1,3 +1,5 @@
+// License: GNU Affero General Public License v3.0
+// See LICENSE file at the root of the project
 
 plugins {
     alias(libs.plugins.android.application)
@@ -18,6 +20,8 @@ android {
         versionName = "1.6.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders["license"] = "AGPL-3.0"
     }
 
     buildTypes {
