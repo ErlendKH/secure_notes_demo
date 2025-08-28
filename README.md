@@ -53,7 +53,7 @@ For details on the system architecture, see [ARCHITECTURE.md](/docs/ARCHITECTURE
 - [x] Setup GitHub Actions for automated build and test   
 - [x] Add KDocs  
 - [ ] ~~Integrate Dokka for API docs~~
-- [ ] Add architectural diagrams
+- [x] Add architectural diagrams
 - [ ] Implement Domain layer
 
 ## License
