@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp") // replacement for kapt
     alias(libs.plugins.compose.compiler) // compose plugin
+    id("org.jetbrains.dokka") version "2.0.0"
 }
 
 android {
@@ -52,6 +53,10 @@ android {
             excludes.add("META-INF/LICENSE-notice.md")
             excludes.add("META-INF/LICENSE.md")
         }
+    }
+
+    tasks.dokkaHtml {
+        outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
     }
 
 }
