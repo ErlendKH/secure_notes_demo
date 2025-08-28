@@ -6,6 +6,15 @@ import org.junit.Rule
 import org.junit.Test
 import work.erlend.securenotesdemo.MainActivity
 
+/**
+ * Instrumented Compose UI tests for the Theory flow.
+ *
+ * Verifies navigation between screens in the Theory section:
+ * - Clicking "Agile" navigates to the Agile info screen
+ * - Back navigation returns to Theory screen
+ *
+ * Uses [createAndroidComposeRule] with [MainActivity].
+ */
 class TheoryScreenTest {
 
     // Use an Android activity for instrumented Compose tests

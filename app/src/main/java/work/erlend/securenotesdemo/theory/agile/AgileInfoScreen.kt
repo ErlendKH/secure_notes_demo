@@ -60,6 +60,14 @@ val agilePages = listOf(
     )
 )
 
+/**
+ * Displays a carousel of pages explaining Agile development principles.
+ *
+ * Uses [InfoCarousel] to show the pages defined in [agilePages], with navigation
+ * buttons to return to the Theory menu or proceed to Security info.
+ *
+ * @param navController the [NavController] used for navigation
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AgileInfoScreen(navController: NavController) {

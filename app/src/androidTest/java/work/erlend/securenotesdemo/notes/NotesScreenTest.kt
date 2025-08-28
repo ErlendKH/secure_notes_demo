@@ -5,6 +5,12 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import org.junit.*
 import work.erlend.securenotesdemo.MainActivity
 
+/**
+ * Instrumented Compose UI tests for the NotesScreen.
+ *
+ * Verifies navigation to the Upgrade screen and back to NotesScreen.
+ * Checks that key UI elements are displayed at each step.
+ */
 class NotesScreenTest {
 
     @get:Rule

@@ -8,6 +8,15 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.Assert.assertEquals
 
+/**
+ * Unit tests for [NoteRepository], using a mocked [NoteDao].
+ *
+ * Ensures that the repository correctly delegates operations to the DAO:
+ * - [NoteRepository.addNote] calls DAO insert
+ * - [NoteRepository.getAllNotes] retrieves notes from DAO
+ * - [NoteRepository.updateNote] calls DAO update
+ * - [NoteRepository.deleteNote] calls DAO delete
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 class NoteRepositoryTest {
 

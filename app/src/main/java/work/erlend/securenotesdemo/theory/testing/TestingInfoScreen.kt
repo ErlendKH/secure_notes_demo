@@ -10,7 +10,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -62,6 +61,14 @@ val testingPages = listOf(
     )
 )
 
+/**
+ * Displays a carousel of pages explaining testing strategies for Android apps.
+ *
+ * Uses [InfoCarousel] to show the pages defined in [testingPages], with navigation
+ * buttons to return to the Theory menu or proceed to Agile info.
+ *
+ * @param navController the [NavController] used for navigation
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TestingInfoScreen(navController: NavController) {

@@ -17,6 +17,16 @@ import kotlinx.coroutines.launch
 import work.erlend.securenotesdemo.common.data.security.KeystorePassphraseManager
 import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 
+/**
+ * Demo screen for generating and displaying the current database passphrase,
+ * and securely rekeying the database with a new passphrase.
+ *
+ * Provides buttons to show the passphrase and to trigger a database rekey via
+ * [KeystorePassphraseManager]. Rekeying occurs on a background IO coroutine.
+ *
+ * @param navController used to navigate back to the previous screen
+ * @param database the [NotesDatabase] instance to rekey
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpgradeScreen(

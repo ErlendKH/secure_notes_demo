@@ -21,6 +21,15 @@ import work.erlend.securenotesdemo.navigation.Screen
 
 private const val MAX_NOTE_LENGTH = 300
 
+/**
+ * Displays a list of notes with search, sort, add, edit, and delete functionality.
+ *
+ * Fetches notes from [NoteRepository] and allows filtering by [searchQuery].
+ * Provides dialogs for adding, editing, and confirming deletion of notes.
+ *
+ * @param noteRepository the repository used to fetch and modify notes
+ * @param navController used to navigate to other screens (e.g., UpgradeScreen)
+ */
 @Composable
 fun NotesScreen(noteRepository: NoteRepository, navController: NavController) {
     val scope = rememberCoroutineScope()

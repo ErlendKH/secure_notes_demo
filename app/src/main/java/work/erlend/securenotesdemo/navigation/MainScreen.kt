@@ -17,6 +17,25 @@ import work.erlend.securenotesdemo.theory.security.SecurityInfoScreen
 import work.erlend.securenotesdemo.theory.testing.TestingInfoScreen
 import work.erlend.securenotesdemo.notes.upgrade.UpgradeScreen
 
+/**
+ * The main navigation Composable for the Secure Notes Demo app.
+ *
+ * This function sets up:
+ * - A [Scaffold] with a bottom navigation bar containing the main tabs
+ *   (Notes and Theory)
+ * - A [NavHost] to manage navigation between screens
+ * - Injection of [NotesDatabase] and [NoteRepository] into the relevant screens
+ *
+ * Each tab in the bottom navigation corresponds to a top-level screen:
+ * - [Screen.Notes] → displays [NotesScreen]
+ * - [Screen.Theory] → displays [TheoryScreen] and related info screens
+ *
+ * Additional screens like [UpgradeScreen], [AgileInfoScreen], [TestingInfoScreen],
+ * and [SecurityInfoScreen] are included in the navigation graph.
+ *
+ * @param database the encrypted [NotesDatabase] instance used in screens that require it
+ * @param noteRepository the [NoteRepository] providing access to note data
+ */
 @Composable
 fun MainScreen(database: NotesDatabase, noteRepository: NoteRepository) {
     val navController = rememberNavController()
@@ -65,6 +84,15 @@ fun MainScreen(database: NotesDatabase, noteRepository: NoteRepository) {
     }
 }
 
+/**
+ * Determines whether a parent tab is currently selected based on the navigation route.
+ *
+ * This helps highlight the active tab in the bottom navigation bar.
+ *
+ * @param parentRoute the route of the parent tab (e.g., "Notes" or "Theory")
+ * @param currentRoute the current route from the NavController
+ * @return `true` if the current route starts with the parent route, `false` otherwise
+ */
 fun isParentTabSelected(parentRoute: String, currentRoute: String?): Boolean {
     return currentRoute?.startsWith(parentRoute) == true
 }

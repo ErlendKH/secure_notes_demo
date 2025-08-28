@@ -22,6 +22,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
+/**
+ * A horizontally scrollable carousel for displaying informational pages.
+ *
+ * Each page displays a title at the top, scrollable content, and optional
+ * navigation buttons at the bottom. Dot indicators show the current page.
+ *
+ * @param pages the list of [CarouselPage]s to display
+ * @param modifier optional [Modifier] for styling and layout
+ * @param onReturn callback invoked when the "Return" button is pressed
+ * @param navigateNext optional callback for a "Next" button, shown on the last page if provided
+ */
 @Composable
 fun InfoCarousel(
     pages: List<CarouselPage>,

@@ -25,8 +25,27 @@ import work.erlend.securenotesdemo.common.data.local.NoteRepository
 import work.erlend.securenotesdemo.common.data.security.KeystorePassphraseManager
 import work.erlend.securenotesdemo.common.data.local.NotesDatabase
 
+/**
+ * The main entry point for the Secure Notes Demo app.
+ *
+ * This activity is responsible for:
+ * - Generating or retrieving a secure passphrase from the Android Keystore
+ * - Initializing the encrypted [NotesDatabase] with the passphrase
+ * - Creating a [NoteRepository] to manage note operations
+ * - Setting up and launching the Compose UI with [SecureNotesDemoApp]
+ */
 class MainActivity : ComponentActivity() {
 
+    /**
+     * Initializes the application.
+     *
+     * Securely retrieves a passphrase via [KeystorePassphraseManager], sets up
+     * the encrypted Room [NotesDatabase], and injects the [NoteRepository] into
+     * the app's top-level composable.
+     *
+     * @param savedInstanceState the saved state of the activity, or `null`
+     * if none is available
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

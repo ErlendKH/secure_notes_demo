@@ -31,6 +31,13 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 
+/**
+ * Manages secure generation, storage, and retrieval of the database passphrase.
+ *
+ * Uses the Android Keystore to encrypt the passphrase and stores it in
+ * [android.content.SharedPreferences]. Provides methods for creating, updating, encrypting,
+ * decrypting, and rekeying the database.
+ */
 object KeystorePassphraseManager {
 
     private const val ANDROID_KEYSTORE = "AndroidKeyStore"
@@ -41,7 +48,15 @@ object KeystorePassphraseManager {
 
     private var cachedPassphrase: String? = null
 
-    /** Returns the existing passphrase or creates a new one */
+    /**
+     * Returns the existing database passphrase, or creates a new one if not present.
+     *
+     * Retrieves the passphrase from SharedPreferences, decrypts it using a
+     * SecretKey from the Android Keystore, and caches it in memory.
+     *
+     * @param context the [Context] used to access SharedPreferences
+     * @return the decrypted database passphrase
+     */
     fun getOrCreatePassphrase(context: Context): String {
         cachedPassphrase?.let { return it }
 
@@ -67,7 +82,14 @@ object KeystorePassphraseManager {
         return newPass
     }
 
-    /** Updates the passphrase and stores it persistently */
+    /**
+     * Updates the database passphrase and stores it encrypted in SharedPreferences.
+     *
+     * Also updates the in-memory cached passphrase.
+     *
+     * @param context the [Context] used to access SharedPreferences
+     * @param newPassphrase the new passphrase to store
+     */
     fun updatePassphrase(context: Context, newPassphrase: String) {
         val key = getOrCreateAesKey(KEY_ALIAS)
         val encrypted = encrypt(newPassphrase, key)
@@ -75,11 +97,21 @@ object KeystorePassphraseManager {
         cachedPassphrase = newPassphrase
     }
 
-    /** Regular SharedPreferences */
+    /** Returns the regular [android.content.SharedPreferences]
+     * used to persist the encrypted passphrase.
+     * */
     private fun getPrefs(context: Context) =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    /** Creates or retrieves a SecretKey from the Android Keystore */
+    /**
+     * Creates or retrieves a SecretKey from the Android Keystore.
+     *
+     * If a key with the given [alias] exists, it is returned. Otherwise, a new AES key
+     * with GCM/NoPadding is generated and stored in the Keystore.
+     *
+     * @param alias the alias name for the key
+     * @return the [SecretKey] used for encryption/decryption
+     */
     fun getOrCreateAesKey(alias: String): SecretKey {
         val ks = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
         (ks.getEntry(alias, null) as? KeyStore.SecretKeyEntry)?.let { return it.secretKey }
@@ -97,7 +129,15 @@ object KeystorePassphraseManager {
         return keyGen.generateKey()
     }
 
-    /** Encrypts a passphrase using the given SecretKey */
+    /**
+     * Encrypts a passphrase using the given [SecretKey].
+     *
+     * Prepends the IV to the ciphertext and encodes the result in Base64.
+     *
+     * @param passphrase the plaintext passphrase to encrypt
+     * @param key the [SecretKey] used for encryption
+     * @return the encrypted passphrase as a Base64 string
+     */
     internal fun encrypt(passphrase: String, key: SecretKey): String {
         val cipher = Cipher.getInstance(AES_TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, key)
@@ -108,7 +148,16 @@ object KeystorePassphraseManager {
         return Base64.encodeToString(iv + encryptedBytes, Base64.DEFAULT)
     }
 
-    /** Decrypts an encrypted passphrase using the given SecretKey */
+    /**
+     * Decrypts a Base64-encoded passphrase using the given [SecretKey].
+     *
+     * Extracts the IV from the first 12 bytes and decrypts the remainder.
+     *
+     * @param encryptedBase64 the encrypted passphrase in Base64
+     * @param key the [SecretKey] used for decryption
+     * @return the decrypted passphrase
+     * @throws IllegalArgumentException if the ciphertext is too short
+     */
     internal fun decrypt(encryptedBase64: String, key: SecretKey): String {
         val bytes = Base64.decode(encryptedBase64, Base64.DEFAULT)
         require(bytes.size > 12) { "Ciphertext too short" } // Basic sanity check
@@ -119,6 +168,16 @@ object KeystorePassphraseManager {
         return String(cipher.doFinal(cipherText), Charsets.UTF_8)
     }
 
+    /**
+     * Rekeys the SQLCipher database with a new randomly generated passphrase.
+     *
+     * Uses PRAGMA rekey via a raw query, and updates the stored passphrase in
+     * SharedPreferences.
+     *
+     * @param context the [Context] used to update the stored passphrase
+     * @param database the [NotesDatabase] to rekey
+     * @throws Exception if rekeying fails
+     */
     fun rekeyDatabase(context: Context, database: NotesDatabase) {
         val newPass = UUID.randomUUID().toString()
         val db = database.openHelper.writableDatabase

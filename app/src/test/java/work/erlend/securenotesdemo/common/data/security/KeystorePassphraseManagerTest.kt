@@ -12,12 +12,22 @@ import org.robolectric.RobolectricTestRunner
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 
+/** Generates a random AES key for use in tests. */
 fun generateTestKey(): SecretKey {
     val keyGen = KeyGenerator.getInstance("AES")
     keyGen.init(256) // or 128/192 depending on your implementation
     return keyGen.generateKey()
 }
 
+/**
+ * Unit tests for [KeystorePassphraseManager] encryption and decryption functions.
+ *
+ * Verifies that encrypting and then decrypting returns the original data for:
+ * - Normal strings
+ * - Empty strings
+ * - Unicode strings
+ * - Long strings
+ */
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(RobolectricTestRunner::class)
 class KeystorePassphraseManagerTest {

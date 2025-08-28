@@ -8,11 +8,18 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import work.erlend.securenotesdemo.common.data.local.NoteEntity
 
+/**
+ * Represents a single note item in a list.
+ *
+ * Displays the note content and provides edit and delete buttons.
+ *
+ * @param note the [NoteEntity] to display
+ * @param onDelete callback invoked when the delete button is pressed
+ * @param onEdit callback invoked when the edit button is pressed
+ */
 @Composable
 fun NoteItem(
     note: NoteEntity,
