@@ -56,7 +56,7 @@ The app follows a simple layered structure:
 - [x] Add instrumented tests  
 - [x] Setup GitHub Actions for automated build and test   
 - [x] Add KDocs  
-- [ ] Integrate Dokka for API docs
+- [ ] ~~Integrate Dokka for API docs~~
 - [ ] Add architectural diagrams
 
 ## License

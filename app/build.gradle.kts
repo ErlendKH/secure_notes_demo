@@ -61,18 +61,9 @@ android {
 
 }
 
-//tasks.dokkaHtml {
-//    outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
-//}
-//tasks.dokkaGfm {
-//    outputDirectory.set(layout.buildDirectory.dir("documentation/markdown"))
-//}
-//tasks.dokkaJavadoc {
-//    outputDirectory.set(layout.buildDirectory.dir("documentation/javadoc"))
-//}
-
 dokka {
     moduleName.set("Secure Notes Demo")
+
     dokkaPublications.html {
         suppressInheritedMembers.set(true)
         outputDirectory.set(project.layout.buildDirectory.dir("docs/html"))
@@ -81,7 +72,6 @@ dokka {
         suppressInheritedMembers.set(true)
         outputDirectory.set(project.layout.buildDirectory.dir("docs/javadoc"))
     }
-
     dokkaSourceSets.main {
         reportUndocumented.set(true)
 
