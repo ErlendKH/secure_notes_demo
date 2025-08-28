@@ -54,3 +54,8 @@ The app follows a simple layered structure:
 - [ ] Add KDocs  
 - [ ] Integrate Dokka for API docs
 - [ ] Add architectural diagrams
+
+## License
+
+This project is licensed under the **AGPL-3.0** license from its inception.  
+The license applies to all, but not limited to, **files**, **commits**, **branches**, **tags**, and **releases** in this repository.
