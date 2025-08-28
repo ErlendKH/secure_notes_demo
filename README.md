@@ -57,5 +57,5 @@ The app follows a simple layered structure:
 
 ## License
 
-This project is licensed under the **AGPL-3.0** license from its inception.  
+This project is licensed under the [AGPL-3.0](LICENSE) license from its inception.  
 The license applies to all, but not limited to, **files**, **commits**, **branches**, **tags**, and **releases** in this repository.
