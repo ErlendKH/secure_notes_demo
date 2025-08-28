@@ -1,5 +1,9 @@
 # Secure Notes Demo App
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ErlendKH/secure_notes_demo)
+![Build](https://github.com/ErlendKH/secure_notes_demo/actions/workflows/android.yml/badge.svg)
+
 **Secure Notes Demo App** is a simple **Jetpack Compose** based Android app.  
 It demonstrates modern Android development practices with a focus on **secure local storage** and **maintainable design**.
 
