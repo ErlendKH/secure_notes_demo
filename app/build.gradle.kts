@@ -64,6 +64,7 @@ android {
 dokka {
     moduleName.set("Secure Notes Demo")
 
+
     dokkaPublications.html {
         suppressInheritedMembers.set(true)
         outputDirectory.set(project.layout.buildDirectory.dir("docs/html"))

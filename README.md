@@ -34,13 +34,9 @@ It demonstrates modern Android development practices with a focus on **secure lo
 
 
 
-## Architecture Overview
+## Architecture Overview  
 
-The app follows a simple layered structure:
-
-- **UI layer**: Jetpack Compose screens (`NotesScreen`, `UpgradeScreen`, etc.)  
-- **State layer**: ViewModels manage app state and business logic  
-- **Data layer**: Database access with SQLCipher  
+For details on the system architecture, see [ARCHITECTURE.md](/docs/ARCHITECTURE.md).
 
 
 
@@ -58,6 +54,7 @@ The app follows a simple layered structure:
 - [x] Add KDocs  
 - [ ] ~~Integrate Dokka for API docs~~
 - [ ] Add architectural diagrams
+- [ ] Implement Domain layer
 
 ## License
 
