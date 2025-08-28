@@ -6,7 +6,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp") // replacement for kapt
     alias(libs.plugins.compose.compiler) // compose plugin
-    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka-javadoc")
 }
 
 android {
@@ -38,9 +39,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        jvmToolchain(21)
     }
+//    kotlinOptions {
+//        jvmTarget = "11"
+//    }
     buildFeatures {
         viewBinding = true
         compose = true
@@ -55,10 +59,45 @@ android {
         }
     }
 
-    tasks.dokkaHtml {
-        outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
+}
+
+//tasks.dokkaHtml {
+//    outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
+//}
+//tasks.dokkaGfm {
+//    outputDirectory.set(layout.buildDirectory.dir("documentation/markdown"))
+//}
+//tasks.dokkaJavadoc {
+//    outputDirectory.set(layout.buildDirectory.dir("documentation/javadoc"))
+//}
+
+dokka {
+    moduleName.set("Secure Notes Demo")
+    dokkaPublications.html {
+        suppressInheritedMembers.set(true)
+        outputDirectory.set(project.layout.buildDirectory.dir("docs/html"))
+    }
+    dokkaPublications.javadoc {
+        suppressInheritedMembers.set(true)
+        outputDirectory.set(project.layout.buildDirectory.dir("docs/javadoc"))
     }
 
+    dokkaSourceSets.main {
+        reportUndocumented.set(true)
+
+        // Source link for GitHub
+        sourceLink {
+            localDirectory.set(file("src/main/java/work/erlend/securenotesdemo/"))
+            remoteUrl("https://github.com/ErlendKH/secure_notes_demo/blob/main/app/src/main/java/work/erlend/securenotesdemo")
+            remoteLineSuffix.set("#L")
+        }
+
+        pluginsConfiguration.html {
+//            customStyleSheets.from("styles.css")
+//            customAssets.from("logo.png")
+            footerMessage.set("(c) Erlend Kyrkjerud Hårtveit")
+        }
+    }
 }
 
 dependencies {

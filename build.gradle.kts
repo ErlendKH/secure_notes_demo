@@ -20,5 +20,6 @@ plugins {
 
     alias(libs.plugins.compose.compiler) apply false
 
-    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.jetbrains.dokka") version "2.0.0" apply false
+    id("org.jetbrains.dokka-javadoc") version "2.0.0" apply false
 }
