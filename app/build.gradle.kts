@@ -51,12 +51,6 @@ android {
         resources {
             excludes.add("META-INF/LICENSE-notice.md")
             excludes.add("META-INF/LICENSE.md")
-//            pickFirsts += listOf(
-//                "META-INF/LICENSE.md",
-//                "META-INF/LICENSE.txt",
-//                "META-INF/NOTICE.md",
-//                "META-INF/NOTICE.txt"
-//            )
         }
     }
 
@@ -64,45 +58,55 @@ android {
 
 dependencies {
 
+    // Android Kotlin
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.runtime.android)
-    implementation(libs.androidx.ui.android)
-    implementation(libs.androidx.foundation.android)
 
-    // Added dependencies for using Room, encryption, coroutines, and Compose.
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.security.crypto)
+    // Coroutines
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.compose.material3)
+    // Navigation
 
-    implementation(libs.activity.compose)
-    implementation(libs.lifecycle.runtime.ktx)
-
-    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.compose)
 
-    implementation(libs.android.database.sqlcipher)
+    // Compose
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.compose.material3)
+    implementation(libs.androidx.foundation.android)
+    implementation(libs.androidx.ui.android)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+
+    // Room / Database / Security
+
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.sqlite.framework)
+    implementation(libs.android.database.sqlcipher)
+    implementation(libs.androidx.security.crypto)
+
+    // Testing
 
     implementation(libs.androidx.ui.test.junit4.android)
 
-    testImplementation(libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
     testImplementation(libs.robolectric)
 
-    androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.mockk.android)
 
 }
